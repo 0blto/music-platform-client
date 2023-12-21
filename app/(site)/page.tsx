@@ -1,5 +1,6 @@
 import Header from '@/components/Header'
 import ListItem from '@/components/ListItem'
+import MusicList from '@/components/MisicList'
 
 export default function Home() {
   return (
@@ -22,7 +23,11 @@ export default function Home() {
             '>
               Welcome back
           </h1>
-          <div
+          
+        </div>
+      </Header>
+      <div className='mt-2 mb-7 px-6'>
+      <div
             className='
               grid
               grid-cols-1
@@ -31,21 +36,32 @@ export default function Home() {
               mt-4
             '
           >
+            <MusicList
+              image="/images/liked_songs.png"
+              title="Liked Songs"
+              href="liked/songs"
+            />
             <ListItem
-              image="/images/liked.png"
-              name="Liked Songs"
-              href="liked"
+              image="/images/liked_albums.png"
+              name="Liked Albums"
+              href="liked/albums"
+            />
+            <ListItem
+              image="/images/liked_playlists.png"
+              name="Liked Playlists"
+              href="liked/playlists"
+            />
+            <ListItem
+              image="/images/liked_artists.png"
+              name="Liked Artists"
+              href="liked/artists"
+            />
+            <ListItem
+              image="/images/playlist.jpg"
+              name="Your Playlists"
+              href="playlists"
             />
           </div>
-        </div>
-      </Header>
-      <div className='mt-2 mb-7 px-6'>
-        <div className='flex justify-between items-center'>
-          <h1 className='text-white text-2xl font-semibold'>Newest songs</h1>
-        </div>
-        <div>
-          List of songs!
-        </div>
       </div>
     </div>
   )

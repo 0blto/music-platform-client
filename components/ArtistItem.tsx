@@ -1,17 +1,20 @@
-"use client"
+"use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { FaPlay } from "react-icons/fa";
 
-interface ListItemProps {
+interface ArtistItemProps {
     image: string;
     name: string;
+    likes: number;
     href: string;
 }
 
-const ListItem: React.FC<ListItemProps> = ({
+const ArtistItem: React.FC<ArtistItemProps> = ({
     image,
     name,
+    likes,
     href
 }) => {
     const router = useRouter();
@@ -20,12 +23,14 @@ const ListItem: React.FC<ListItemProps> = ({
         router.push(href);
     }
     return ( 
+        
         <button
             onClick={onClick}
             className="
                 relative 
                 group 
                 flex 
+                flex-col
                 items-center 
                 rounded-md 
                 overflow-hidden 
@@ -34,15 +39,15 @@ const ListItem: React.FC<ListItemProps> = ({
                 cursor-pointer 
                 hover:bg-neutral-100/20 
                 transition 
-                pr-4
                 my-2
+                w-[200px]
             "
         >
             <div
                 className="
                     relative
-                    min-h-[64px]
-                    min-w-[64px]
+                    min-h-[200px]
+                    min-w-[200px]
                 "
             >
                 <Image
@@ -52,11 +57,14 @@ const ListItem: React.FC<ListItemProps> = ({
                     alt="Image"
                 />
             </div>
-            <p className="font-medium truncate py-5">
+            <p className="font-medium truncate py-2">
                 {name}
             </p>
+            <p className="text-sm text-neutral-400 truncate py-2">Likes: {likes}</p>
+            
         </button>
      );
 }
  
-export default ListItem;
+
+export default ArtistItem;

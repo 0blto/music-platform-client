@@ -9,11 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.5",
+    "install": "^0.13.0",
     "next": "14.0.3",
+    "npm": "^10.2.5",
+    "query-string": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
-    "tailwind-merge": "^2.1.0"
+    "react-spinners": "^0.13.8",
+    "tailwind-merge": "^2.1.0",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@types/node": "^20",
