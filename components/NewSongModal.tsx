@@ -21,7 +21,9 @@ const NewSongModal = () => {
       }
 
     const addSong = async () => {
-        uploadSong({title: name});
+        uploadSong({title: name, genreId: 'dc00501c-aa37-4d92-91bd-477fae2fb670'});
+        setName('');
+        onClose();
     }
 
     return ( 

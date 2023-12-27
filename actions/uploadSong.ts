@@ -1,4 +1,4 @@
-import { getAccessToken, setSession } from "@/actions/session";
+import { getAccessToken } from "@/actions/session";
 import { SERVER_API, authorizerHeaders } from "@/app/config";
 import { Song } from "@/types/song";
 

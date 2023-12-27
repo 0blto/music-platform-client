@@ -22,7 +22,7 @@ const useNewReleaseModal = create<NewReleaseModalStore>((set) => ({
   },
   clearSongs: () => {
     set({songs: []})
-  }
+  },
 }));
 
 export default useNewReleaseModal;
