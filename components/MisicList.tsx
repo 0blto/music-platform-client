@@ -19,6 +19,7 @@ const MusicList: React.FC<MusicListProps> = ({
     const onClick = () => {
         //load songs
     }
+
     return ( 
         <button
             onClick={onClick}
@@ -37,6 +38,7 @@ const MusicList: React.FC<MusicListProps> = ({
                 transition 
                 my-2
                 w-[200px]
+                pb-5
             "
         >
             <div
@@ -52,29 +54,26 @@ const MusicList: React.FC<MusicListProps> = ({
                     src={image}
                     alt="Image"
                 />
-                <div 
-                    className="
-                    absolute 
-                    transition 
-                    opacity-0
-                    drop-shadow-md 
-                    left-[50%]
-                    top-[50%]
-                    translate-x-[-45%]
-                    translate-y-[-50%]
-                    group-hover:opacity-100 
-                    hover:scale-110
-                    p-[40px]
-                    "
-                >
-                    <FaPlay size={35} className="text-black" />
-                </div>
             </div>
             <p className="font-medium truncate py-2">
                 {title}
             </p>
             <p className="text-sm text-neutral-400 truncate py-2">{name}</p>
-            
+            <div 
+                    className="
+                    absolute 
+                    transition 
+                    opacity-0
+                    drop-shadow-md 
+                    right-[-25px]
+                    bottom-[-25px]
+                    group-hover:opacity-100 
+                    hover:scale-110
+                    p-[40px]
+                    "
+                >
+                <FaPlay size={25} className="text-neutral-200" />
+            </div>
         </button>
      );
 }

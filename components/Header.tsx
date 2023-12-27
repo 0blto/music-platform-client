@@ -5,8 +5,15 @@ import { twMerge } from "tailwind-merge";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx"
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
+import { MdLogout } from "react-icons/md";
+import { VscAccount } from "react-icons/vsc";
 
 import Button from "./Button";
+import useAuthModal from "@/hooks/useAuthModal";
+import useRegisterModal from "@/hooks/useRegisterModal";
+import { clearSession, getAccessToken, getSessionUser } from "@/actions/session";
+import { useEffect, useState } from "react";
+
 
 interface HeaderProps {
     children: React.ReactNode;
@@ -14,9 +21,25 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({children, className}) => {
+
+    const authModal = useAuthModal();
+    const registerModal = useRegisterModal();
+    const artistCreateModal = useAuthModal();
+    const [user, setUser] = useState<string>('');
+    const [token, setToken] = useState<string>('');
+
+    useEffect(() => {
+        setUser(`${getSessionUser()}`);
+        setToken(`${getAccessToken()}`);
+    }, [])
+
+    console.log(user, token);
+
     const router = useRouter();
     const handleLogout = () => {
-        //later
+        setUser('');
+        setToken('');
+        clearSession();
     }
     return ( 
         <div
@@ -110,44 +133,65 @@ const Header: React.FC<HeaderProps> = ({children, className}) => {
                         <BiSearch className="text-black" size={20}/>
                     </button>
                 </div>
-                <div
-                    className="
-                        flex
-                        justify-between
-                        items-center
-                        gap-x-4
-                    "  
-                >
-                    <>
-                        <div>
-                            <Button
-                                onClick={() => {}}
-                                className="
-                                    bg-transparent
-                                    text-neutral-300
-                                    font-medium
-                                "
+                <div className="flex justify-between items-center gap-x-4">
+                    {user !== '' ? (
+                        <div className="flex gap-x-6 items-center justify-between">
+                            <button 
+                            onClick={() => router.push('/account')}
+                            className="
+                                flex 
+                                flex-2
+                                items-center
+                                justify-around
+                                rounded-md 
+                                overflow-hidden 
+                                cursor-pointer 
+                                w-[120px]
+                                bg-neutral-100/10
+                                hover:bg-neutral-100/20 
+                                hover:scale-105 
+                                transition
+                                px-2
+                                py-4
+                            ">
+                                <VscAccount size={35}/>
+                                {user}
+                            </button>
+                            <Button 
+                                onClick={handleLogout} 
+                                className="bg-white px-6 py-2 flex-1"
                             >
-                                Sign up
+                                <MdLogout/>
+                            </Button>
+                        </div>
+                    ) : (
+                        <>
+                        <div>
+                            <Button 
+                            onClick={registerModal.onOpen} 
+                            className="
+                                bg-transparent 
+                                text-neutral-300 
+                                font-medium
+                            "
+                            >
+                            Sign up
                             </Button>
                         </div>
                         <div>
-                            <Button
-                                onClick={() => {}}
-                                className="
-                                    bg-white
-                                    px-6
-                                    py-2
-                                "
+                            <Button 
+                            onClick={artistCreateModal.onOpen} 
+                            className="bg-white px-6 py-2"
                             >
-                                Log in
+                            Log in
                             </Button>
                         </div>
-                    </>
+                        </>
+                    )}
+                    </div>
                 </div>
-            </div>
-            {children}
-        </div>
+                {children}
+                </div>
      );
 }
  
