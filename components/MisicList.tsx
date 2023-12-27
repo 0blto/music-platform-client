@@ -1,5 +1,6 @@
 "use client"
 
+import { getAlbumSongs } from "@/actions/getAlbumSongs";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
 
@@ -16,13 +17,14 @@ const MusicList: React.FC<MusicListProps> = ({
     title,
     href
 }) => {
-    const onClick = () => {
-        //load songs
+    const onClick = async () => {
+        const data = await getAlbumSongs(href);
+        console.log(data);
     }
 
     return ( 
         <button
-            onClick={onClick}
+            onClick={() => onClick()}
             className="
                 relative 
                 group 
@@ -60,6 +62,7 @@ const MusicList: React.FC<MusicListProps> = ({
             </p>
             <p className="text-sm text-neutral-400 truncate py-2">{name}</p>
             <div 
+                    onClick={() => {onClick()}}
                     className="
                     absolute 
                     transition 

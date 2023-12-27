@@ -22,7 +22,6 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({children, className}) => {
 
-    const authModal = useAuthModal();
     const registerModal = useRegisterModal();
     const artistCreateModal = useAuthModal();
     const [user, setUser] = useState<string>('');

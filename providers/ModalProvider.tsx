@@ -2,6 +2,7 @@
 
 
 import AuthModal from "@/components/AuthModal";
+import NewPlaylistModal from "@/components/NewPlaylistModal";
 import NewReleaseModal from "@/components/NewReleaseModal";
 import NewSongModal from "@/components/NewSongModal";
 import RegisterModal from "@/components/RegisterModal";
@@ -27,6 +28,7 @@ const ModalProvider = () => {
         <RegisterModal/>
         <NewReleaseModal/>
         <NewSongModal/>
+        <NewPlaylistModal/>
     </>
   );
 }

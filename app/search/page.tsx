@@ -2,6 +2,8 @@ import Header from "@/components/Header"
 import SearchInput from "@/components/SearchInput"
 import SearchContent from "./components/SearchContent"
 import {getPlaylistsByTitle} from "@/actions/getPlaylistsByTitle"
+import { getAlbumsByTitle } from "@/actions/getAlbumsByTitle"
+import { getArtistsByTitle } from "@/actions/getArtistsByTitle"
 
 export const revalidate = 0
 
@@ -13,8 +15,9 @@ interface SearchProps {
 }
 
 const Search = async ({ searchParams }: SearchProps) => {
-    const playlists = await getPlaylistsByTitle(searchParams.query)
-    console.log(searchParams.query)
+    const playlists = await getPlaylistsByTitle(searchParams.query);
+    const albums = await getAlbumsByTitle(searchParams.query);
+    const artists = await getArtistsByTitle(searchParams.query);
     return (
         <div
           className="
@@ -33,7 +36,7 @@ const Search = async ({ searchParams }: SearchProps) => {
               <SearchInput />
             </div>
           </Header>
-          <SearchContent playlists={playlists}/>
+          <SearchContent playlists={playlists} albums={albums} artists={artists}/>
         </div>
       );
 }

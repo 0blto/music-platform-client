@@ -5,9 +5,11 @@ interface NewReleaseModalStore {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-  songs: Song[];
-  addSong: Function
-  clearSongs: Function
+  songs: string[];
+  addSong: Function;
+  clearSongs: Function;
+  genre: string;
+  setGenre: Function;
 }
 
 const useNewReleaseModal = create<NewReleaseModalStore>((set) => ({
@@ -15,14 +17,16 @@ const useNewReleaseModal = create<NewReleaseModalStore>((set) => ({
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
   songs: [],
-  addSong: (song: Song) => {
+  addSong: (songId: string) => {
     set((state) => ({
-      songs: [...state.songs, song],
+      songs: [...state.songs, songId],
     }));
   },
   clearSongs: () => {
     set({songs: []})
   },
+  genre: 'f9667ca1-15b7-487d-9cfa-7a8b15b62610',
+  setGenre: (g: string) => set({genre: g}),
 }));
 
 export default useNewReleaseModal;

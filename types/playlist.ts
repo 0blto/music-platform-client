@@ -7,3 +7,7 @@ export interface Playlist {
     likesCount: number,
     songsCount: number
 }
+
+export interface PlaylistInsert {
+    title: string;
+}

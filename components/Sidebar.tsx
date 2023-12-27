@@ -54,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({children}) => {
                         </div>
                     </Box>
                     <Box className="h-full overflow-y-auto">
-                        <Current name="1 hour dead inside tracks"/>
+                        <Current/>
                     </Box>
             </div>
             <main className="h-full flex-1 overflow-y-auto py-2">

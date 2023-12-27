@@ -2,9 +2,13 @@
 
 import { FaPlay } from "react-icons/fa";
 
+interface SongItemProps {
+    title: string;
+    artist: string;
+    songId: string;
+}
 
-
-const SongItem = () => {
+const SongItem: React.FC<SongItemProps> = ({title, artist, songId}) => {
     const onClick = () => {
         //later
     }

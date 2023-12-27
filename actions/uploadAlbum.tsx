@@ -1,13 +1,13 @@
 import { getAccessToken } from "@/actions/session";
 import { SERVER_API, authorizerHeaders } from "@/app/config";
-import { Song } from "@/types/song";
+import { Album } from "@/types/album";
 
 
-export const uploadSong = async (song: Song) => {
-    const data = await fetch(`${SERVER_API}/song/insertSong`, {
+export const uploadAlbum = async (album: Album) => {
+    const data = await fetch(`${SERVER_API}/album/create_album`, {
         method: 'POST',
         headers: authorizerHeaders(`${getAccessToken()}`),
-        body: JSON.stringify(song)
+        body: JSON.stringify(album)
     })
     if (data.status !== 200) return undefined;
     return (await (data.json())).id;

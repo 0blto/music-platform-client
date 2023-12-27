@@ -1,10 +1,15 @@
+"use client"
+
+import Button from "@/components/Button";
 import Header from "@/components/Header"
 import MusicList from "@/components/MisicList";
+import { SERVER_IMG } from "../config";
+import useNewPlaylistModal from "@/hooks/useNewPlaylistModal";
 
 
 
 const LikedAlbums = async () => {
-    const found = []
+    const newPlaylistModal = useNewPlaylistModal();
     return (
         <div
           className="
@@ -21,38 +26,12 @@ const LikedAlbums = async () => {
                 Your Playlists
               </h1>
             </div>
+            <Button onClick={newPlaylistModal.onOpen}>Add playlist</Button>
             <div className="p-2 flex flex-wrap">
+              
               <div className="m-2">
                 <MusicList
-                  image="/images/liked_songs.png"
-                  title="Liked Songs"
-                  href="liked/songs"
-                />
-              </div>
-              <div className="m-2">
-                <MusicList
-                  image="/images/liked_songs.png"
-                  title="Liked Songs"
-                  href="liked/songs"
-                />
-              </div>
-              <div className="m-2">
-                <MusicList
-                  image="/images/liked_songs.png"
-                  title="Liked Songs"
-                  href="liked/songs"
-                />
-              </div>
-              <div className="m-2">
-                <MusicList
-                  image="/images/liked_songs.png"
-                  title="Liked Songs"
-                  href="liked/songs"
-                />
-              </div>
-              <div className="m-2">
-                <MusicList
-                  image="/images/liked_songs.png"
+                  image={`${SERVER_IMG}/holod.jpg`}
                   title="Liked Songs"
                   href="liked/songs"
                 />
