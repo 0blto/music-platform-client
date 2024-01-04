@@ -30,6 +30,7 @@ const Header: React.FC<HeaderProps> = ({children, className}) => {
     useEffect(() => {
         setUser(`${getSessionUser()}`);
         setToken(`${getAccessToken()}`);
+        console.log(user);
     }, [])
 
     console.log(user, token);

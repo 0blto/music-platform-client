@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import Modal from "./Modal";
 import useAuthModal from "@/hooks/useAuthModal";
 import Input from "./Input";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "./Button";
 import { loginWithLoginAndPassword } from "@/actions/loginRequest";
 import { setSessionUser } from "@/actions/session";

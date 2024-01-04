@@ -1,4 +1,3 @@
-import { Song } from '@/types/song';
 import { create } from 'zustand';
 
 interface NewReleaseModalStore {
@@ -25,7 +24,7 @@ const useNewReleaseModal = create<NewReleaseModalStore>((set) => ({
   clearSongs: () => {
     set({songs: []})
   },
-  genre: 'f9667ca1-15b7-487d-9cfa-7a8b15b62610',
+  genre: '3a827edd-4908-4cf9-b748-7bee576864b9',
   setGenre: (g: string) => set({genre: g}),
 }));
 

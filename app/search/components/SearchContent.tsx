@@ -3,13 +3,13 @@
 import { SERVER_API, SERVER_IMG } from "@/app/config";
 import ArtistItem from "@/components/ArtistItem";
 import MusicList from "@/components/MisicList";
-import { AlbumViev } from "@/types/album";
+import { AlbumView } from "@/types/album";
 import { ArtistView } from "@/types/artist";
 import { Playlist } from "@/types/playlist";
 
 interface SearchContentProps {
   playlists: Playlist[];
-  albums: AlbumViev[];
+  albums: AlbumView[];
   artists: ArtistView[];
 }
 
@@ -63,7 +63,7 @@ const SearchContent: React.FC<SearchContentProps> = ({
           </h1>
         </div>
         <div className="p-2 flex flex-wrap">
-          {albums.map((album: AlbumViev) => (
+          {albums.map((album: AlbumView) => (
             <div 
               key={album.id.toString()} 
               className="flex items-center gap-x-4 w-full"

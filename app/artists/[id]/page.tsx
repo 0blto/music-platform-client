@@ -1,6 +1,7 @@
 "use client"
 
 import { getArtistReleases } from "@/actions/getArtistReleases";
+import { getArtistById } from "@/actions/getArtistById";
 import { SERVER_API, SERVER_IMG } from "@/app/config";
 import Header from "@/components/Header";
 import MusicList from "@/components/MisicList";
@@ -10,16 +11,15 @@ import { usePathname } from "next/navigation";
 
 
 const ArtistId = async () => {
-    const artist = {
-        name: 'Artist',
-        likes: 30,
-        avatar: '/images/album.jpg'
-    }
+    
 
     const path = usePathname();
     const id = `${path.split('/').pop()}`;
     
     const albums = await getArtistReleases(id);
+
+    const artist = await getArtistById(id);
+
     
 
     return (
@@ -49,16 +49,13 @@ const ArtistId = async () => {
                         <Image
                             fill
                             className="rounded-lg object-cover drop-shadow-lg"
-                            src={artist.avatar}
+                            src={`${SERVER_IMG}/holod.jpg`}
                             alt="Image"
                         />
                     </div>
                     <h1 className="text-white text-3xl font-semibold">
-                        {artist.name}
+                        {artist?.nickname}
                     </h1>
-                </div>
-                <div className="text-sm text-neutral-400 mb-4">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem eveniet eius, deserunt labore obcaecati libero perspiciatis, incidunt maxime aut natus doloremque quia at possimus quaerat ipsam. Adipisci aspernatur facilis quisquam.</p>
                 </div>
                 <div className="mb-2 flex flex-col gap-y-6">
                 <h1 className="text-white text-3xl font-semibold">
@@ -69,7 +66,7 @@ const ArtistId = async () => {
                 {albums.map((album: AlbumView) => (
                     <div 
                     key={album.id.toString()} 
-                    className="flex items-center gap-x-4 w-full"
+                    className="flex items-center gap-x-4"
                     >
                     <div className="m-2">
                         <MusicList 

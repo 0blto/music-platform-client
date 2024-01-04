@@ -23,7 +23,8 @@ const newSongModal = useNewSongModal();
       }
 
     const upload = async () => {
-      const albumId = await uploadAlbum({title: title, genreId: genre})
+      const albumId = await uploadAlbum({title: title, genreId: genre});
+      console.log(albumId);
       songs.forEach(songId => {
         linkAlbumSong(albumId, songId);
       })

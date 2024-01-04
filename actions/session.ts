@@ -6,12 +6,14 @@ export const setSession = (accessToken: string, refreshToken: string) => {
  
 export const getAccessToken = () => {
     if (typeof window !== 'undefined') 
-       return localStorage.getItem('accessToken');
+       return localStorage.getItem('accessToken') ? 
+       localStorage.getItem('accessToken') : '';
  };
 
 export const getRefreshToken = () => {
     if (typeof window !== 'undefined') 
-       return localStorage.getItem('refreshToken');
+       return localStorage.getItem('refreshToken') ? 
+         localStorage.getItem('refreshToken') : '';
  };
 
 export const setSessionUser = (username: string) => {
@@ -21,7 +23,8 @@ export const setSessionUser = (username: string) => {
 
  export const getSessionUser = () => {
    if (typeof window !== 'undefined')
-      return localStorage.getItem('username');
+      return localStorage.getItem('username') ? 
+      localStorage.getItem('username') : '';
  }
 
  export const clearSession = () => {
@@ -36,5 +39,6 @@ export const setSessionUser = (username: string) => {
 
  export const getSessionArtist = () => {
    if (typeof window !== 'undefined')
-      return localStorage.getItem('nickname');
+      return localStorage.getItem('nickname') ? 
+      localStorage.getItem('nickname') : '';
  }
