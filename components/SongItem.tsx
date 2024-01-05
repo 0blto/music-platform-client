@@ -44,10 +44,10 @@ const SongItem: React.FC<SongItemProps> = ({title, artist, songId}) => {
             </div>
             
             <p className="font-medium truncate mr-5">
-                Title
+                {title}
             </p>
             <p className="text-sm font-small truncate text-neutral-400">
-                Artist
+                {artist}
             </p>
         </button>
      );

@@ -51,7 +51,7 @@ const SearchContent: React.FC<SearchContentProps> = ({
                 <MusicList 
                   image={`${SERVER_IMG}/holod.jpg`}
                   title={playlist.title.toString()}
-                  href="href"
+                  href={`${SERVER_API}/playlist/${playlist.id}`}
                 />
               </div>
             </div>
@@ -72,7 +72,7 @@ const SearchContent: React.FC<SearchContentProps> = ({
                 <MusicList 
                   image={`${SERVER_IMG}/holod.jpg`}
                   title={album.title.toString()}
-                  href="href"
+                  href={`${SERVER_API}/album/getSongs/${album.id}`}
                 />
               </div>
             </div>

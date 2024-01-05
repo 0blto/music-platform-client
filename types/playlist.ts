@@ -1,3 +1,5 @@
+import { SongView } from "./song";
+
 export interface Playlist {
     id: string,
     userCreatorId: string,
@@ -10,4 +12,9 @@ export interface Playlist {
 
 export interface PlaylistInsert {
     title: string;
+}
+
+export interface PlaylistWithSongs {
+    info: Playlist;
+    songs: SongView[];
 }

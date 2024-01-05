@@ -2,10 +2,11 @@
 
 import usePlayer from "@/hooks/usePlayer";
 import { TbPlaylist } from "react-icons/tb";
+import SongItem from "./SongItem";
 
 const Current = () => {
 
-    const {listTitle, titles, authors} = usePlayer();
+    const {listTitle, titles, authors, ids} = usePlayer();
     if (listTitle) {
         return ( 
             <div className="flex flex-col">
@@ -18,7 +19,9 @@ const Current = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-y-2 mt-2 px-3 h-full">
-                    
+                {ids.map((id: string, i: number) => (
+                    <SongItem key={id} title={titles[i]} artist="nema" songId={id} />
+                ))}
                 </div>
             </div>
          );
