@@ -1,6 +1,7 @@
 "use client"
 
 import { getAlbumSongs } from "@/actions/getAlbumSongs";
+import { getSongAuthor } from "@/actions/getSongAuthor";
 import usePlayer from "@/hooks/usePlayer";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
@@ -30,6 +31,11 @@ const MusicList: React.FC<MusicListProps> = ({
         const idsArray: string[] = [];
         data?.songs.forEach(song => {idsArray.push(song.id)});
         setIds(idsArray);
+        const artistsArray: string[] = [];
+        data?.songs.forEach(async (song) => {
+            artistsArray.push(await getSongAuthor(song.id));
+        });
+        setTimeout(() => setAuthors(artistsArray), 100);
     }
 
     return ( 

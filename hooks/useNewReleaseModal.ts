@@ -1,3 +1,4 @@
+import { getGenres } from '@/actions/getGenres';
 import { create } from 'zustand';
 
 interface NewReleaseModalStore {
@@ -24,8 +25,8 @@ const useNewReleaseModal = create<NewReleaseModalStore>((set) => ({
   clearSongs: () => {
     set({songs: []})
   },
-  genre: '3a827edd-4908-4cf9-b748-7bee576864b9',
-  setGenre: (g: string) => set({genre: g}),
+  genre: '111bad3d-093d-4db4-882f-c553d84c6cee',
+  setGenre: (g: string) => set({genre: g})
 }));
 
 export default useNewReleaseModal;

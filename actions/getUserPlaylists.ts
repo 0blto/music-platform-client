@@ -1,12 +1,14 @@
 import { SERVER_API, authorizerHeaders } from "@/app/config";
-import { AlbumView } from "@/types/album";
 import { getAccessToken } from "./session";
+import { Playlist } from "@/types/playlist";
 
-
-export const getAlbumsByTitle = async (query: string): Promise<AlbumView[]> => {
+export const getUserPlaylists = async (): Promise<Playlist[]> => {
     let data;
     try {
-        data = await fetch(`${SERVER_API}/album/search/${query}`);
+        data = await fetch(`${SERVER_API}/playlist/userPlaylists`, {
+            method: 'POST',
+            headers: authorizerHeaders(`${getAccessToken()}`)
+        });
         if (data.status !== 200) {
             console.log(data.statusText)
             return []

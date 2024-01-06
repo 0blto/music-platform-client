@@ -1,5 +1,6 @@
-import { SERVER_API } from "@/app/config";
+import { SERVER_API, authorizerHeaders } from "@/app/config";
 import { Playlist } from "@/types/playlist";
+import { getAccessToken } from "./session";
 
 
 export const getPlaylistsByTitle = async (query: string): Promise<Playlist[]> => {

@@ -17,7 +17,7 @@ const SearchContent: React.FC<SearchContentProps> = ({
   playlists, albums, artists
 }) => {
 
-  if (playlists.length === 0 && albums.length === 0) {
+  if (playlists.length === 0 && albums.length === 0 && artists.length === 0) {
     return (
       <div 
         className="

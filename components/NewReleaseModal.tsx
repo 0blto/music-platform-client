@@ -7,6 +7,7 @@ import useNewSongModal from "@/hooks/useNewSongModal";
 import { uploadAlbum } from "@/actions/uploadAlbum";
 import Input from "./Input";
 import { linkAlbumSong } from "@/actions/linkAlbumSong";
+import { getGenres } from "@/actions/getGenres";
 
 const NewReleaseModal = () => {
 const newSongModal = useNewSongModal();
@@ -24,9 +25,8 @@ const newSongModal = useNewSongModal();
 
     const upload = async () => {
       const albumId = await uploadAlbum({title: title, genreId: genre});
-      console.log(albumId);
-      songs.forEach(songId => {
-        linkAlbumSong(albumId, songId);
+      songs.forEach(async songId => {
+        console.log(linkAlbumSong(albumId, await songId));
       })
       setTitle('');
       onClose();

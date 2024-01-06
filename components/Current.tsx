@@ -20,7 +20,7 @@ const Current = () => {
                 </div>
                 <div className="flex flex-col gap-y-2 mt-2 px-3 h-full">
                 {ids.map((id: string, i: number) => (
-                    <SongItem key={id} title={titles[i]} artist="nema" songId={id} />
+                    <SongItem key={id} title={titles[i]} artist={authors[i]} songId={id} />
                 ))}
                 </div>
             </div>

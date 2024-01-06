@@ -1,12 +1,11 @@
 import { SERVER_API, authorizerHeaders } from "@/app/config";
-import { AlbumView } from "@/types/album";
-import { getAccessToken } from "./session";
+import { Genre } from "@/types/genre";
 
 
-export const getAlbumsByTitle = async (query: string): Promise<AlbumView[]> => {
+export const getGenres = async (): Promise<Genre[]> => {
     let data;
     try {
-        data = await fetch(`${SERVER_API}/album/search/${query}`);
+        data = await fetch(`${SERVER_API}/genre/getAllGenres`);
         if (data.status !== 200) {
             console.log(data.statusText)
             return []

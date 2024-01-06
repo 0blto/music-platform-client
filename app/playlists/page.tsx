@@ -5,11 +5,14 @@ import Header from "@/components/Header"
 import MusicList from "@/components/MisicList";
 import { SERVER_IMG } from "../config";
 import useNewPlaylistModal from "@/hooks/useNewPlaylistModal";
+import { getUserPlaylists } from "@/actions/getUserPlaylists";
 
 
 
 const LikedAlbums = async () => {
     const newPlaylistModal = useNewPlaylistModal();
+    const playlists = await getUserPlaylists();
+    console.log(playlists);
     return (
         <div
           className="

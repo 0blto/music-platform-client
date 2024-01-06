@@ -1,5 +1,6 @@
-import { SERVER_API } from "@/app/config";
+import { SERVER_API, authorizerHeaders } from "@/app/config";
 import { ArtistView } from "@/types/artist";
+import { getAccessToken } from "./session";
 
 export const getArtistsByTitle = async (query: string): Promise<ArtistView[]> => {
     let data;
