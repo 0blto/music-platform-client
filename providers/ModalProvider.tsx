@@ -1,6 +1,7 @@
 "use client";
 
 
+import AddToPlaylistModal from "@/components/AddToPlaylistModal";
 import AuthModal from "@/components/AuthModal";
 import NewPlaylistModal from "@/components/NewPlaylistModal";
 import NewReleaseModal from "@/components/NewReleaseModal";
@@ -29,6 +30,7 @@ const ModalProvider = () => {
         <NewReleaseModal/>
         <NewSongModal/>
         <NewPlaylistModal/>
+        <AddToPlaylistModal/>
     </>
   );
 }

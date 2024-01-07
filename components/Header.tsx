@@ -11,8 +11,11 @@ import { VscAccount } from "react-icons/vsc";
 import Button from "./Button";
 import useAuthModal from "@/hooks/useAuthModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
-import { clearSession, getAccessToken, getSessionUser } from "@/actions/session";
+import { clearSession, getAccessToken, getRefreshToken, getSessionUser } from "@/actions/session";
 import { useEffect, useState } from "react";
+import useUser from "@/hooks/useUser";
+import usePlaylists from "@/hooks/usePlaylists";
+import { getUserPlaylists } from "@/actions/getUserPlaylists";
 
 
 interface HeaderProps {
@@ -22,22 +25,23 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({children, className}) => {
 
+    const {setPlaylists} = usePlaylists();
+
+    setPlaylists(getUserPlaylists());
+
     const registerModal = useRegisterModal();
     const artistCreateModal = useAuthModal();
-    const [user, setUser] = useState<string>('');
-    const [token, setToken] = useState<string>('');
+    const {setName, setToken, setRefreshToken, name, token, refreshToken} = useUser();
 
     useEffect(() => {
-        setUser(`${getSessionUser()}`);
+        setName(`${getSessionUser()}`);
         setToken(`${getAccessToken()}`);
-        console.log(user);
+        setRefreshToken(`${getRefreshToken()}`)
     }, [])
-
-    console.log(user, token);
 
     const router = useRouter();
     const handleLogout = () => {
-        setUser('');
+        setName('');
         setToken('');
         clearSession();
     }
@@ -134,7 +138,7 @@ const Header: React.FC<HeaderProps> = ({children, className}) => {
                     </button>
                 </div>
                 <div className="flex justify-between items-center gap-x-4">
-                    {user !== '' ? (
+                    {name !== '' ? (
                         <div className="flex gap-x-6 items-center justify-between">
                             <button 
                             onClick={() => router.push('/account')}
@@ -155,7 +159,7 @@ const Header: React.FC<HeaderProps> = ({children, className}) => {
                                 py-4
                             ">
                                 <VscAccount size={35}/>
-                                {user}
+                                {name}
                             </button>
                             <Button 
                                 onClick={handleLogout} 

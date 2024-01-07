@@ -1,6 +1,8 @@
 "use client"
 
 import { FaPlay } from "react-icons/fa";
+import { GiBrokenHeart } from "react-icons/gi";
+import AddToPlaylist from "./AddToPlaylist";
 
 interface SongItemProps {
     title: string;
@@ -17,6 +19,7 @@ const SongItem: React.FC<SongItemProps> = ({title, artist, songId}) => {
             onClick={onClick}
             className="
                 flex 
+                flex-col
                 items-center
                 rounded-md 
                 overflow-hidden 
@@ -29,26 +32,32 @@ const SongItem: React.FC<SongItemProps> = ({title, artist, songId}) => {
                 py-2
             "
         >
-            <div
-                className="
-                    mr-3 
-                    hover:scale-125 
-                    transition 
-                    p-2
-                    flex
-                    items-center
-                    justify-center
-                "
-            >
-                <FaPlay size={10}/>
+            <div className="flex justify-start items-start w-full">
+                <div
+                    className="
+                        mr-3 
+                        hover:scale-125 
+                        transition 
+                        p-2
+                        flex
+                        items-center
+                        justify-center
+                    "
+                >
+                    <FaPlay size={10}/>
+                </div>
+                
+                <p className="font-medium truncate mr-5">
+                    {title}
+                </p>
+                <p className="text-sm font-small truncate text-neutral-400">
+                    {artist}
+                </p>
             </div>
-            
-            <p className="font-medium truncate mr-5">
-                {title}
-            </p>
-            <p className="text-sm font-small truncate text-neutral-400">
-                {artist}
-            </p>
+            <div className="flex">
+                <GiBrokenHeart/>
+                <AddToPlaylist/>
+            </div>
         </button>
      );
 }

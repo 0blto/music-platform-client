@@ -6,6 +6,8 @@ import Sidebar from '@/components/Sidebar'
 import ModalProvider from '@/providers/ModalProvider'
 import Player from '@/components/Player'
 import { SessionProvider } from 'next-auth/react'
+import usePlaylists from '@/hooks/usePlaylists'
+import { getUserPlaylists } from '@/actions/getUserPlaylists'
 
 const font = Figtree({ subsets: ['latin'] })
 
@@ -20,6 +22,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  
+
   return (
     <html lang="en">
       <body className={font.className}>

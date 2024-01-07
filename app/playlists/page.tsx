@@ -3,16 +3,16 @@
 import Button from "@/components/Button";
 import Header from "@/components/Header"
 import MusicList from "@/components/MisicList";
-import { SERVER_IMG } from "../config";
+import { SERVER_API, SERVER_IMG } from "../config";
 import useNewPlaylistModal from "@/hooks/useNewPlaylistModal";
 import { getUserPlaylists } from "@/actions/getUserPlaylists";
+import { Playlist } from "@/types/playlist";
 
 
 
 const LikedAlbums = async () => {
     const newPlaylistModal = useNewPlaylistModal();
     const playlists = await getUserPlaylists();
-    console.log(playlists);
     return (
         <div
           className="
@@ -31,14 +31,17 @@ const LikedAlbums = async () => {
             </div>
             <Button onClick={newPlaylistModal.onOpen}>Add playlist</Button>
             <div className="p-2 flex flex-wrap">
-              
-              <div className="m-2">
+            {playlists.map((playlist: Playlist) => (
+              <div className="m-2" key={playlist.id}>
                 <MusicList
                   image={`${SERVER_IMG}/holod.jpg`}
-                  title="Liked Songs"
-                  href="liked/songs"
+                  title={playlist.title}
+                  href={`${SERVER_API}/playlist/${playlist.id}`}
                 />
               </div>
+            ))}
+              
+              
             </div>
           </Header>
         </div>
