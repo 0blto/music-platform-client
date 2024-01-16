@@ -38,7 +38,7 @@ const LikedPlaylists = async () => {
                       title={playlist.title.toString()}
                       href={`${SERVER_API}/album/getSongs/${playlist.id}`}
                       likeHref={`${SERVER_API}/album/likeAlbum/${playlist.id}`}
-                      type='album'
+                      type='playlist'
                     />
                   </div>
                 </div>

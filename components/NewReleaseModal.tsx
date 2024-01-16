@@ -8,13 +8,16 @@ import { uploadAlbum } from "@/actions/uploadAlbum";
 import Input from "./Input";
 import { linkAlbumSong } from "@/actions/linkAlbumSong";
 import { getGenres } from "@/actions/getGenres";
+import useGenres from "@/hooks/useGenres";
 
 const NewReleaseModal = () => {
     const newSongModal = useNewSongModal();
 
     const [title, setTitle] = useState<string>('');
     const [error, setError] = useState<string>('');
-
+    const [genreName, setGenreName] = useState<string>('');
+    const genresStorage = useGenres();
+    
 
     const { onClose, isOpen, genre, songs } = useNewReleaseModal();
     const onChange = (open: boolean) => {
@@ -24,7 +27,14 @@ const NewReleaseModal = () => {
       }
 
     const upload = async () => {
-      const albumId = await uploadAlbum({title: title, genreId: genre});
+      let currentGenre = undefined; 
+      genresStorage.genres.forEach(cg => {
+        if (cg.name === genreName) {
+          currentGenre = cg.id;
+        }
+      })
+      if (currentGenre === undefined) currentGenre = genre
+      const albumId = await uploadAlbum({title: title, genreId: currentGenre});
       songs.forEach(async songId => {
         console.log(linkAlbumSong(albumId, await songId));
       })
@@ -45,6 +55,13 @@ const NewReleaseModal = () => {
               placeholder="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+            />
+            <h3 className="mb-1">Input genre from list [rock, rap, hyperpop, remix, pop] (default is hyperpop)</h3>
+            <Input
+              className="mb-3"
+              placeholder="genre"
+              value={genreName}
+              onChange={(e) => setGenreName(e.target.value)}
             />
             <Button className="mb-8" onClick={newSongModal.onOpen}>+</Button>
             <Button onClick={() => upload()}>Upload</Button>

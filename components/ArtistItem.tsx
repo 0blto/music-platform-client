@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
 import Like from "./Like";
@@ -25,6 +25,7 @@ const ArtistItem: React.FC<ArtistItemProps> = ({
         //add auth to push
         router.push(href);
     }
+    const id = `${href.split('/').pop()}`;
     return ( 
         
         <button
@@ -79,7 +80,7 @@ const ArtistItem: React.FC<ArtistItemProps> = ({
                     p-[40px]
                     "
                 >
-                <Like link={`${likeHref}`} type={'artist'} id={'1'} />
+                <Like link={`${likeHref}`} type={'artist'} id={id} />
             </div>
         </button>
      );

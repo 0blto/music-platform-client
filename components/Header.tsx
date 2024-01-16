@@ -17,6 +17,7 @@ import useUser from "@/hooks/useUser";
 import usePlaylists from "@/hooks/usePlaylists";
 import { getUserPlaylists } from "@/actions/getUserPlaylists";
 import useLiked from "@/hooks/useLiked";
+import useGenres from "@/hooks/useGenres";
 
 
 interface HeaderProps {
@@ -28,6 +29,7 @@ const Header: React.FC<HeaderProps> = ({children, className}) => {
 
     const {setPlaylists} = usePlaylists();
     const liked = useLiked();
+    const {genres, setGenres} = useGenres();
     
 
     const registerModal = useRegisterModal();
@@ -40,6 +42,7 @@ const Header: React.FC<HeaderProps> = ({children, className}) => {
         liked.setArtists();
         liked.setSongs();
         liked.setPlaylists();
+        setGenres();
     }, [])
 
     const router = useRouter();

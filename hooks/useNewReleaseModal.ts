@@ -25,7 +25,7 @@ const useNewReleaseModal = create<NewReleaseModalStore>((set) => ({
   clearSongs: () => {
     set({songs: []})
   },
-  genre: '17d7ba7c-5fdc-449f-850a-5823fb519c1a',
+  genre: 'fed1f837-3f6e-40ea-95a3-4c0458465799',
   setGenre: (g: string) => set({genre: g})
 }));
 

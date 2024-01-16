@@ -26,6 +26,8 @@ const MusicList: React.FC<MusicListProps> = ({
     likeHref,
     type
 }) => {
+    const id = `${href.split('/').pop()}`;
+    console.log(id);
     const liked = useLiked();
     const { setAuthors, setListTitle, setTitles, setIds } = usePlayer();
     const onClick = async () => {
@@ -115,7 +117,7 @@ const MusicList: React.FC<MusicListProps> = ({
                         p-[40px]
                         "
                     >
-                    <Like link={`${likeHref}`} type={type} id={'1'} />
+                    <Like link={`${likeHref}`} type={type} id={id} />
                 </div>
                 )
                 : (<div></div>)

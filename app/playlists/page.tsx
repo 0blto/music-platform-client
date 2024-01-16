@@ -8,8 +8,9 @@ import useNewPlaylistModal from "@/hooks/useNewPlaylistModal";
 import { getUserPlaylists } from "@/actions/getUserPlaylists";
 import { Playlist } from "@/types/playlist";
 import usePlaylists from "@/hooks/usePlaylists";
+import { useEffect, useState } from "react";
 
-
+export const revalidate = 0
 
 const LikedAlbums = async () => {
     const newPlaylistModal = useNewPlaylistModal();
