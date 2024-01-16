@@ -1,10 +1,15 @@
+'use client'
+import { SERVER_API, SERVER_IMG } from "@/app/config";
 import Header from "@/components/Header"
 import MusicList from "@/components/MisicList";
+import useLiked from "@/hooks/useLiked";
+import { Playlist } from "@/types/playlist";
 
 
 
-const LikedArtists = async () => {
+const LikedPlaylists = async () => {
     const found = []
+    const liked = useLiked();
     return (
         <div
           className="
@@ -22,45 +27,26 @@ const LikedArtists = async () => {
               </h1>
             </div>
             <div className="p-2 flex flex-wrap">
-              <div className="m-2">
-                <MusicList
-                  image="/images/liked_songs.png"
-                  title="Liked Songs"
-                  href="liked/songs"
-                />
-              </div>
-              <div className="m-2">
-                <MusicList
-                  image="/images/liked_songs.png"
-                  title="Liked Songs"
-                  href="liked/songs"
-                />
-              </div>
-              <div className="m-2">
-                <MusicList
-                  image="/images/liked_songs.png"
-                  title="Liked Songs"
-                  href="liked/songs"
-                />
-              </div>
-              <div className="m-2">
-                <MusicList
-                  image="/images/liked_songs.png"
-                  title="Liked Songs"
-                  href="liked/songs"
-                />
-              </div>
-              <div className="m-2">
-                <MusicList
-                  image="/images/liked_songs.png"
-                  title="Liked Songs"
-                  href="liked/songs"
-                />
-              </div>
+              {liked.playlists.map((playlist: Playlist) => (
+                <div 
+                  key={playlist.id.toString()} 
+                  className="flex items-center gap-x-4 w-full"
+                >
+                  <div className="flex-1">
+                    <MusicList 
+                      image={`${SERVER_IMG}/holod.jpg`}
+                      title={playlist.title.toString()}
+                      href={`${SERVER_API}/album/getSongs/${playlist.id}`}
+                      likeHref={`${SERVER_API}/album/likeAlbum/${playlist.id}`}
+                      type='album'
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </Header>
         </div>
       );
 }
 
-export default LikedArtists;
+export default LikedPlaylists;

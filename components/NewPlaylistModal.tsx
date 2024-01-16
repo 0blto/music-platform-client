@@ -4,11 +4,16 @@ import Button from "./Button";
 import Input from "./Input";
 import { uploadPlaylist } from "@/actions/uploadPlaylist";
 import useNewPlaylistModal from "@/hooks/useNewPlaylistModal";
+import usePlaylists from "@/hooks/usePlaylists";
+import { useRouter } from "next/navigation";
 
 const NewSongModal = () => {
+    const router = useRouter();
+
     const [name, setName] = useState<string>('');
     const [error, setError] = useState<string>('');
 
+    const {setPlaylists} = usePlaylists();
 
     const { onClose, isOpen } = useNewPlaylistModal();
     const onChange = (open: boolean) => {
@@ -19,8 +24,10 @@ const NewSongModal = () => {
 
     const addPlaylist = async () => {
         uploadPlaylist({title: name});
+        setPlaylists();
         setName('');
         onClose();
+        router.refresh();
     }
 
     return ( 

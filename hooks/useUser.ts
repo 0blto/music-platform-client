@@ -1,3 +1,4 @@
+import { getAccessToken, getRefreshToken, getSessionUser } from '@/actions/session';
 import { create } from 'zustand';
 
 interface UserStore {
@@ -10,9 +11,9 @@ interface UserStore {
 }
 
 const useUser = create<UserStore>((set) => ({
-  name: '',
-  token: '',
-  refreshToken: '',
+  name: `${getSessionUser()}`,
+  token: `${getAccessToken()}`,
+  refreshToken: `${getRefreshToken()}`,
   setName: (name: string) => set({ name }),
   setToken: (token: string) => set({ token }),
   setRefreshToken: (refreshToken: string) => set({ refreshToken }),

@@ -1,3 +1,4 @@
+import { getUserPlaylists } from '@/actions/getUserPlaylists';
 import { Playlist } from '@/types/playlist';
 import { create } from 'zustand';
 
@@ -6,7 +7,7 @@ interface PlaylistsStore {
   addPlaylist: Function;
   setPlaylists: Function
 }
-
+//hook for playlists
 const usePlaylists = create<PlaylistsStore>((set) => ({
   playlists: [],
   addPlaylist: (playlist: Playlist) => {
@@ -14,7 +15,7 @@ const usePlaylists = create<PlaylistsStore>((set) => ({
       playlists: [...state.playlists, playlist],
     }));
   },
-  setPlaylists: (playlists: Playlist[]) => set({playlists})
+  setPlaylists: async () => set({playlists: await getUserPlaylists()})
 }));
 
 export default usePlaylists;

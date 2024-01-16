@@ -1,6 +1,7 @@
 import Header from '@/components/Header'
 import ListItem from '@/components/ListItem'
 import MusicList from '@/components/MisicList'
+import { SERVER_API } from '../config'
 
 export default function Home() {
   return (
@@ -39,7 +40,8 @@ export default function Home() {
             <MusicList
               image="/images/liked_songs.png"
               title="Liked Songs"
-              href="liked/songs"
+              href={`${SERVER_API}/song/getLikedSong`}
+              type='song'
             />
             <ListItem
               image="/images/liked_albums.png"

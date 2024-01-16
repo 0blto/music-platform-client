@@ -26,9 +26,10 @@ const RegisterModal = () => {
             setError('');
             setSessionUser(login);
             onClose();
+            becomeArtist(login);
             router.refresh()
           }
-          becomeArtist(login);
+          
     }
 
     const router = useRouter();

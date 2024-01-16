@@ -1,10 +1,16 @@
+'use client'
+
+import { SERVER_API, SERVER_IMG } from "@/app/config";
 import ArtistItem from "@/components/ArtistItem";
 import Header from "@/components/Header"
+import useLiked from "@/hooks/useLiked";
+import { ArtistView } from "@/types/artist";
 
 
 
 const LikedArtists = async () => {
     const found = []
+    const liked = useLiked();
     return (
         <div
           className="
@@ -22,18 +28,21 @@ const LikedArtists = async () => {
               </h1>
             </div>
             <div className="p-2 flex flex-wrap">
-              <div className="m-2">
-                <ArtistItem name="whrsmmnd" likes={9921939} href="/artists/1" image="/images/album.jpg"/>
+            {liked.artists.map((artist: ArtistView) => (
+              <div 
+                key={artist.id.toString()} 
+                className="flex items-center gap-x-4 w-full"
+              >
+                <div className="flex-1 m-2">
+                  <ArtistItem 
+                    image={`${SERVER_IMG}/holod.jpg`}
+                    name={artist.nickname.toString()}
+                    href={`/artists/${artist.id}`} likes={artist.likesCount}
+                    likeHref={`${SERVER_API}/artist/likeArtist/${artist.id}`}
+                  />
+                </div>
               </div>
-              <div className="m-2">
-                <ArtistItem name="StopaPupa" likes={99219391} href="/artists/2" image="/images/songs.png"/>
-              </div>
-              <div className="m-2">
-                <ArtistItem name="destroy lonely" likes={0} href="/artists/3" image="/images/album.jpg"/>
-              </div>
-              <div className="m-2">
-                <ArtistItem name="suffering" likes={0} href="/artists/4" image="/images/album.jpg"/>
-              </div>
+            ))}
             </div>
           </Header>
         </div>

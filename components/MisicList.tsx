@@ -5,25 +5,31 @@ import { getSongAuthor } from "@/actions/getSongAuthor";
 import usePlayer from "@/hooks/usePlayer";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
+import Like from "./Like";
+import { getLikedSongs } from "@/actions/getLikedSongs";
+import useLiked from "@/hooks/useLiked";
 
 interface MusicListProps {
     image: string;
     name?: string;
     title: string;
     href: string;
+    likeHref?: string;
+    type: string;
 }
 
 const MusicList: React.FC<MusicListProps> = ({
     image,
     name,
     title,
-    href
+    href,
+    likeHref,
+    type
 }) => {
-
+    const liked = useLiked();
     const { setAuthors, setListTitle, setTitles, setIds } = usePlayer();
-
     const onClick = async () => {
-        const data = await getAlbumSongs(href);
+        const data = title === 'Liked Songs' ? liked.songs : await getAlbumSongs(href);
         setListTitle(`${data?.info.title}`);
         const titlesArray: string[] = [];
         data?.songs.forEach(song => {titlesArray.push(song.title)});
@@ -40,7 +46,6 @@ const MusicList: React.FC<MusicListProps> = ({
 
     return ( 
         <button
-            onClick={() => onClick()}
             className="
                 relative 
                 group 
@@ -93,6 +98,29 @@ const MusicList: React.FC<MusicListProps> = ({
                 >
                 <FaPlay size={25} className="text-neutral-200" />
             </div>
+            <p className="text-sm text-neutral-400 truncate py-2">{name}</p>
+            {title !== 'Liked Songs'
+                ? (
+                    <div 
+                        onClick={() => {onClick()}}
+                        className="
+                        absolute 
+                        transition 
+                        opacity-0
+                        drop-shadow-md 
+                        left-[-25px]
+                        bottom-[-25px]
+                        group-hover:opacity-100 
+                        hover:scale-110
+                        p-[40px]
+                        "
+                    >
+                    <Like link={`${likeHref}`} type={type} id={'1'} />
+                </div>
+                )
+                : (<div></div>)
+            }
+            
         </button>
      );
 }

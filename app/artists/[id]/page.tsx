@@ -73,6 +73,8 @@ const ArtistId = async () => {
                         image={`${SERVER_IMG}/holod.jpg`}
                         title={album.title.toString()}
                         href={`${SERVER_API}/album/getSongs/${album.id}`}
+                        likeHref={`${SERVER_API}/album/likeAlbum/${album.id}`}
+                        type="album"
                         />
                     </div>
                     </div>

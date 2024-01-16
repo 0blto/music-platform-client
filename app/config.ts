@@ -1,6 +1,6 @@
 import { getGenres } from "@/actions/getGenres";
 
-export const SERVER_IMG = 'http://localhost:8181/img';
+export const SERVER_IMG = '/img';
 export const SERVER_AUDIO = 'http://localhost:8181/audio';
 export const SERVER_API = 'http://localhost:8181/v1';
 

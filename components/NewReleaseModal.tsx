@@ -10,7 +10,7 @@ import { linkAlbumSong } from "@/actions/linkAlbumSong";
 import { getGenres } from "@/actions/getGenres";
 
 const NewReleaseModal = () => {
-const newSongModal = useNewSongModal();
+    const newSongModal = useNewSongModal();
 
     const [title, setTitle] = useState<string>('');
     const [error, setError] = useState<string>('');

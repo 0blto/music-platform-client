@@ -52,6 +52,8 @@ const SearchContent: React.FC<SearchContentProps> = ({
                   image={`${SERVER_IMG}/holod.jpg`}
                   title={playlist.title.toString()}
                   href={`${SERVER_API}/playlist/${playlist.id}`}
+                  likeHref={`${SERVER_API}/playlist/likePlaylist/${playlist.id}`}
+                  type='playlist'
                 />
               </div>
             </div>
@@ -73,6 +75,8 @@ const SearchContent: React.FC<SearchContentProps> = ({
                   image={`${SERVER_IMG}/holod.jpg`}
                   title={album.title.toString()}
                   href={`${SERVER_API}/album/getSongs/${album.id}`}
+                  likeHref={`${SERVER_API}/album/likeAlbum/${album.id}`}
+                  type='album'
                 />
               </div>
             </div>
@@ -93,7 +97,9 @@ const SearchContent: React.FC<SearchContentProps> = ({
                 <ArtistItem 
                   image={`${SERVER_IMG}/holod.jpg`}
                   name={artist.nickname.toString()}
-                  href={`/artists/${artist.id}`} likes={artist.likesCount}                />
+                  href={`/artists/${artist.id}`} likes={artist.likesCount}
+                  likeHref={`${SERVER_API}/artist/likeArtist/${artist.id}`}
+                />
               </div>
             </div>
           ))}

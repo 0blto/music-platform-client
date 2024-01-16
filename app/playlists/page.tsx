@@ -7,12 +7,13 @@ import { SERVER_API, SERVER_IMG } from "../config";
 import useNewPlaylistModal from "@/hooks/useNewPlaylistModal";
 import { getUserPlaylists } from "@/actions/getUserPlaylists";
 import { Playlist } from "@/types/playlist";
+import usePlaylists from "@/hooks/usePlaylists";
 
 
 
 const LikedAlbums = async () => {
     const newPlaylistModal = useNewPlaylistModal();
-    const playlists = await getUserPlaylists();
+    const {playlists} = usePlaylists();
     return (
         <div
           className="
@@ -37,6 +38,8 @@ const LikedAlbums = async () => {
                   image={`${SERVER_IMG}/holod.jpg`}
                   title={playlist.title}
                   href={`${SERVER_API}/playlist/${playlist.id}`}
+                  likeHref={`${SERVER_API}/playlist/likePlaylist/${playlist.id}`}
+                  type='playlist'
                 />
               </div>
             ))}

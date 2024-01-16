@@ -1,6 +1,7 @@
 "use client";
 
 import usePlayer from "@/hooks/usePlayer";
+import PlayerContent from "./PlayerContent";
 
 
 
@@ -23,6 +24,7 @@ const Player = () => {
         px-4
       "
     >
+      <PlayerContent title={player.title} author={player.author} />
     </div>
   );
 }

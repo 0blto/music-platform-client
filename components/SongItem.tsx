@@ -3,6 +3,9 @@
 import { FaPlay } from "react-icons/fa";
 import { GiBrokenHeart } from "react-icons/gi";
 import AddToPlaylist from "./AddToPlaylist";
+import Like from "./Like";
+import usePlayer from "@/hooks/usePlayer";
+import { SERVER_API } from "@/app/config";
 
 interface SongItemProps {
     title: string;
@@ -11,8 +14,12 @@ interface SongItemProps {
 }
 
 const SongItem: React.FC<SongItemProps> = ({title, artist, songId}) => {
+    const player = usePlayer();
     const onClick = () => {
-        //later
+        const currentIndex = player.ids.findIndex((id) => id === songId);
+        player.setAuthor(player.authors[currentIndex]);
+        player.setTitle(player.titles[currentIndex]);
+        player.setId(player.ids[currentIndex]);
     }
     return ( 
         <button
@@ -53,10 +60,11 @@ const SongItem: React.FC<SongItemProps> = ({title, artist, songId}) => {
                 <p className="text-sm font-small truncate text-neutral-400">
                     {artist}
                 </p>
+                
             </div>
-            <div className="flex">
-                <GiBrokenHeart/>
-                <AddToPlaylist/>
+            <div className="flex justify-center items-center">
+                <Like link={`${SERVER_API}/song/likeSong/${songId}`} type={'song'} id={songId} />
+                <AddToPlaylist songId={songId}/>
             </div>
         </button>
      );

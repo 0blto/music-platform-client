@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import useUser from "@/hooks/useUser";
 import usePlaylists from "@/hooks/usePlaylists";
 import { getUserPlaylists } from "@/actions/getUserPlaylists";
+import useLiked from "@/hooks/useLiked";
 
 
 interface HeaderProps {
@@ -26,17 +27,19 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({children, className}) => {
 
     const {setPlaylists} = usePlaylists();
-
-    setPlaylists(getUserPlaylists());
+    const liked = useLiked();
+    
 
     const registerModal = useRegisterModal();
     const artistCreateModal = useAuthModal();
     const {setName, setToken, setRefreshToken, name, token, refreshToken} = useUser();
 
     useEffect(() => {
-        setName(`${getSessionUser()}`);
-        setToken(`${getAccessToken()}`);
-        setRefreshToken(`${getRefreshToken()}`)
+        setPlaylists();
+        liked.setAlbums();
+        liked.setArtists();
+        liked.setSongs();
+        liked.setPlaylists();
     }, [])
 
     const router = useRouter();
